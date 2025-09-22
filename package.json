@@ -1,0 +1,22 @@
+{
+  "name": "pos",
+  "version": "1.0.0",
+  "description": "A simple Point of Sale system",
+  "main": "server.js",
+  "private": true,
+  "proxy": "http://localhost:5000",
+  "scripts": {
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "concurrently": "^8.2.0"
+  }
+}
