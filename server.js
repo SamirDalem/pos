@@ -6,10 +6,24 @@ const app = express();
 const PORT = 5000;
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://samirdalem.github.io',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
   credentials: true
 }));
+
+// Handle preflight
+app.options('*', cors());
 app.use(express.json());
 
 // Test endpoint
